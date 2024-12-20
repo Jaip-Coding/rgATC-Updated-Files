@@ -1,0 +1,85 @@
+diff RedGriffinATC_Old/globals.nas RedGriffinATC/globals.nas
+16a17
+> # Updated 18 Dec 2024 by Jaip
+146a148
+> var phoneticMode = "";
+635a638
+> var property_Setting_PhoneticMode = props.globals.getNode("/rgatc/phonetic-mode", 1);
+647a651
+> var property_Setting_SetImmatriculation = props.globals.getNode("/rgatc/set-immatriculation", 1);
+Common subdirectories: RedGriffinATC_Old/gui and RedGriffinATC/gui
+diff RedGriffinATC_Old/rgatc.nas RedGriffinATC/rgatc.nas
+16a17
+> # Updated 18 Dec 2024 by Jaip
+5460c5461,5468
+<     atcVoice ~= spellToPhonetic(cs, spell_text);
+---
+>     
+>     if(phoneticMode == "Yes")
+>         atcVoice ~= spellToPhonetic(cs, spell_text);
+>     else
+>     {
+>         cs = extract_digits(cs);
+>         atcVoice ~= cs[0] ~ spellToPhonetic(cs[1], spell_number);
+>     }
+5463a5472,5491
+> 
+> var extract_digits = func(input_str) {
+>     var new_str = "";
+>     var len = size(input_str);
+>     var end_index = len - 1;
+>     
+>     for (var i = len - 1; i >= 0; i -= 1) {
+>         var char = substr(input_str, i, 1);
+>         if (isnum(char)) {
+>             new_str = char ~ new_str;
+>             end_index = i - 1;
+>         } else {
+>             break;
+>         }
+>     }
+> 
+>     var trimmed_str = substr(input_str, 0, end_index + 1);
+>     
+>     return [trimmed_str, new_str];
+> };
+diff RedGriffinATC_Old/settings.nas RedGriffinATC/settings.nas
+16a17
+> # Updated 18 Dec 2024 by Jaip
+25a27
+> var default_setting_phonetic_mode = "No";
+37a40
+> var default_setting_set_immatriculation = "Yes";
+61a65
+>     property_Setting_PhoneticMode.setValue(default_setting_phonetic_mode);
+73a78
+>     property_Setting_SetImmatriculation.setValue(default_setting_set_immatriculation);
+85a91
+>     phoneticMode = property_Setting_PhoneticMode.getValue();
+97a104
+>     setImmatriculation = property_Setting_SetImmatriculation.getValue();
+140a148,154
+>     if(phoneticMode == nil or phoneticMode == "")
+>     {
+>         phoneticMode = default_setting_phonetic_mode;
+> 
+>         property_Setting_PhoneticMode.setValue(default_setting_phonetic_mode);
+>     }
+> 
+238a253,259
+>     if(setImmatriculation == nil or setImmatriculation == "")
+>     {
+>         setImmatriculation = default_setting_set_immatriculation;
+> 
+>         property_Setting_SetImmatriculation.setValue(default_setting_set_immatriculation);
+>     }
+> 
+241,242c262,266
+<     property_MultiplayCallsign.setValue(string.uc(callsign));
+<     property_UserCallsign.setValue(string.uc(callsign));
+---
+>     if(setImmatriculation == "Yes")
+>     {
+>         property_MultiplayCallsign.setValue(string.uc(callsign));
+>         property_UserCallsign.setValue(string.uc(callsign));
+>     }
