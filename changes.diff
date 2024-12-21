@@ -83,3 +83,86 @@ diff RedGriffinATC_Old/settings.nas RedGriffinATC/settings.nas
 >         property_MultiplayCallsign.setValue(string.uc(callsign));
 >         property_UserCallsign.setValue(string.uc(callsign));
 >     }
+diff RedGriffinATC_Old/gui/dialogs/settings-dialog.xml RedGriffinATC/gui/dialogs/settings-dialog.xml
+17a18
+>  Updated 18 Dec 2024 by Jaip
+198a200,222
+>                     <label>Use phonetic</label>
+>                 </text>
+>
+>                 <combo>
+>                     <name>phonetic-mode-combo</name>
+>                     <row>5</row>
+>                     <col>1</col>
+>                     <halign>left</halign>
+>                     <property>/rgatc/phonetic-mode</property>
+>                     <value>Yes</value>
+>                     <value>No</value>
+>                     <editable>false</editable>
+>                     <pref-width>180</pref-width>
+>                     <halign>fill</halign>
+>                     <binding>
+>                         <command>dialog-apply</command>
+>                     </binding>
+>                 </combo>
+>
+>                 <text>
+>                     <row>6</row>
+>                     <col>0</col>
+>                     <halign>left</halign>
+204c228
+<                     <row>5</row>
+---
+>                     <row>6</row>
+219c243
+<                     <row>6</row>
+---
+>                     <row>7</row>
+227c251
+<                     <row>6</row>
+---
+>                     <row>7</row>
+243c267
+<                     <row>7</row>
+---
+>                     <row>8</row>
+251c275
+<                     <row>7</row>
+---
+>                     <row>8</row>
+272c296
+<                     <row>8</row>
+---
+>                     <row>9</row>
+280c304
+<                     <row>8</row>
+---
+>                     <row>9</row>
+502a527,549
+>                     <label>Call sign as immatriculation</label>
+>                 </text>
+>
+>                 <combo>
+>                     <name>immatriculation-combo</name>
+>                     <row>8</row>
+>                     <col>1</col>
+>                     <halign>left</halign>
+>                     <property>/rgatc/set-immatriculation</property>
+>                     <value>Yes</value>
+>                     <value>No</value>
+>                     <editable>false</editable>
+>                     <pref-width>180</pref-width>
+>                     <halign>fill</halign>
+>                     <binding>
+>                         <command>dialog-apply</command>
+>                     </binding>
+>                 </combo>
+>
+>                 <text>
+>                     <row>9</row>
+>                     <col>0</col>
+>                     <halign>left</halign>
+507c554
+<                     <row>8</row>
+---
+>                     <row>9</row>
